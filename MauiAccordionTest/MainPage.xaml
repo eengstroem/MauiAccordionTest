@@ -9,31 +9,215 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+            <!--External wrapping grid-->
+            <Frame IsVisible="True"
+                   CornerRadius="5"
+                   Margin="10">
+                <VerticalStackLayout>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                    <StackLayout>
+                        <Grid>
+                            <Label TextColor="#535355"
+                                   Margin="5"
+                                   Text="Title"
+                                   FontAttributes="Bold"
+                                   FontSize="17" />
+
+                            <Label TextColor="#00aeef"
+                                   Margin="0,5,45,0"
+                                   Text="2950"
+                                   HorizontalOptions="End"
+                                   FontSize="17"
+                                   FontAttributes="Bold" />
+                            <Label TextColor="#00aeef"
+                                   Margin="0,5,10,0"
+                                   FontSize="17"
+                                   Text="DKK"
+                                   HorizontalOptions="End"
+                                   FontAttributes="Bold">
+                            </Label>
+
+                        </Grid>
+                        <Grid>
+                            <Label TextColor="#878788"
+                                   Margin="5"
+                                   FontSize="17"
+                                   HorizontalOptions="Start"
+                                   Text="23JAN23" />
+
+                            <Label TextColor="#878788"
+                                   Margin="5"
+                                   HorizontalOptions="End"
+                                   Text="" />
+                        </Grid>
+                    </StackLayout>
+
+
+                    <!--#region Internal list-->
+                    <Grid VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand">
+                        <CollectionView ItemsSource="{Binding Data}"
+                                        VerticalOptions="Fill">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid Margin="0"
+                                              VerticalOptions="FillAndExpand"
+                                              HorizontalOptions="FillAndExpand">
+                                            <Frame HasShadow="False"
+                                                   BackgroundColor="#f6f6f7"
+                                                   HorizontalOptions="Center"
+                                                   MaximumHeightRequest="500"
+                                                   VerticalOptions="Center"
+                                                   Margin="0">
+                                                <StackLayout>
+                                                    <!--Title line-->
+                                                    <Grid>
+                                                        <Label TextColor="#535355"
+                                                               Margin="0,0,0,0"
+                                                               FontAttributes="Bold"
+                                                               FontSize="16"
+                                                               Text="{Binding Title}"
+                                                               HorizontalTextAlignment="Start"
+                                                               VerticalTextAlignment="Start">
+                                                        </Label>
+                                                        <Image Source="chevron_down"
+                                                               Margin="5,0,0,0"
+                                                               VerticalOptions="Start"
+                                                               HorizontalOptions="End"></Image>
+
+                                                    </Grid>
+                                                    <!--Date and amount-->
+                                                    <Grid>
+                                                        <Label TextColor="#535355"
+                                                               Margin="0,10,0,0"
+                                                               FontSize="16"
+                                                               Text="{Binding SampleDate}"
+                                                               HorizontalTextAlignment="Start"
+                                                               VerticalTextAlignment="Center">
+                                                        </Label>
+                                                        <Label TextColor="#535355"
+                                                               Margin="0,10,35,0"
+                                                               FontSize="16"
+                                                               HorizontalOptions="End"
+                                                               VerticalTextAlignment="Center"
+                                                               Text="{Binding TotalAmount}"></Label>
+                                                        <Label TextColor="#535355"
+                                                               Margin="0,10,0,0"
+                                                               FontSize="16"
+                                                               HorizontalOptions="End"
+                                                               VerticalOptions="Center"
+                                                               VerticalTextAlignment="Center"
+                                                               Padding="0,0,0,0"
+                                                               Text="DKK"></Label>
+
+
+                                                    </Grid>
+                                                    <!--Details-->
+                                                    <Grid IsVisible="False"
+                                                          RowDefinitions="*"
+                                                          BackgroundColor="Red"
+                                                          VerticalOptions="Fill">
+                                                        <Line Margin="0,10,0,10"
+                                                              X1="0"
+                                                              Y1="0"
+                                                              X2="0"
+                                                              Y2="130"
+                                                              Stroke="#535355"
+                                                              StrokeDashArray="1,5"
+                                                              StrokeDashOffset="2">
+                                                        </Line>
+
+                                                        <StackLayout Orientation="Vertical"
+                                                                     Grid.Row="0"
+                                                                     BackgroundColor="Green"
+                                                                     VerticalOptions="Fill">
+                                                            <StackLayout Margin="10"
+                                                                         VerticalOptions="Start"
+                                                                         Orientation="Vertical">
+                                                                <Label FontSize="12"
+                                                                       VerticalOptions="Start"
+                                                                       TextColor="#535355"
+                                                                       Text="Donation 1st half"></Label>
+                                                                <Label FontSize="12"
+                                                                       VerticalOptions="End"
+                                                                       TextColor="#535355"
+                                                                       Text="Donation 2nd half"></Label>
+                                                            </StackLayout>
+                                                            <StackLayout Margin="10"
+                                                                         Grid.Row="1"
+                                                                         VerticalOptions="Center"
+                                                                         Orientation="Vertical">
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    <Label FontSize="12"
+                                                                           VerticalOptions="Start"
+                                                                           TextColor="#535355"
+                                                                           Text="Quality: MOT"></Label>
+                                                                    <Label FontSize="12"
+                                                                           VerticalOptions="Start"
+                                                                           TextColor="#535355"
+                                                                           Text="{Binding MotilityValue}"></Label>
+                                                                </StackLayout>
+                                                                <Label FontSize="12"
+                                                                       VerticalOptions="End"
+                                                                       TextColor="#535355"
+                                                                       Text="Donation 2nd half"></Label>
+                                                            </StackLayout>
+                                                            <StackLayout Margin="10"
+                                                                         Grid.Row="2"
+                                                                         VerticalOptions="End"
+                                                                         Orientation="Vertical">
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    <Label FontSize="12"
+                                                                           VerticalOptions="Start"
+                                                                           TextColor="#535355"
+                                                                           Text="Type of Straws: "></Label>
+                                                                    <Label FontSize="12"
+                                                                           VerticalOptions="Start"
+                                                                           TextColor="#535355"
+                                                                           Text="{Binding Type}"></Label>
+                                                                </StackLayout>
+                                                                <Label FontSize="12"
+                                                                       VerticalOptions="End"
+                                                                       TextColor="#535355"
+                                                                       Text="Donation 2nd half"></Label>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </Grid>
+
+
+                                                    <!--End line-->
+                                                    <Rectangle Margin="0,20,0,0"
+                                                               HorizontalOptions="Center"
+                                                               VerticalOptions="End"
+                                                               Fill="#e5e5e5"
+                                                               HeightRequest="1.5"></Rectangle>
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="CardTapped" />
+                                                    </StackLayout.GestureRecognizers>
+                                                </StackLayout>
+                                                <Frame.Shadow>
+                                                    <Shadow Brush="DarkGray"
+                                                            Offset="4,4"
+                                                            Opacity="0.2" />
+                                                </Frame.Shadow>
+                                            </Frame>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                    <!--#endregion-->
+                </VerticalStackLayout>
+                <Frame.Shadow>
+                    <Shadow Brush="DarkGray"
+                            Offset="4,4"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+            </Frame>
 
         </VerticalStackLayout>
     </ScrollView>
